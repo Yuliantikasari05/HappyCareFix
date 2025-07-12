@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'HappyCare - Kesehatan dan Pariwisata di Yogyakarta')
+@section('title', 'Happybanget - Kesehatan dan Pariwisata di Yogyakarta')
 
 @section('content')
 <!-- Hero Section -->
