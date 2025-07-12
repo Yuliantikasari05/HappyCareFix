@@ -358,3 +358,8 @@ Route::prefix('api/chatbot')->group(function () {
     Route::get('/search', [ChatbotController::class, 'search']);
     Route::get('/history', [ChatbotController::class, 'getHistory'])->middleware('auth');
 });
+
+Route::post('/', function (Request $request) {
+    \Log::info('GitHub webhook received', $request->all());
+    return response()->json(['status' => 'OK']);
+});
