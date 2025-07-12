@@ -17,7 +17,7 @@
                     Platform Kesehatan & Pariwisata di Yogyakarta istimewa
                 </span>
                 <h1 class="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">
-                    Temukan <span class="text-secondary-400">Kesehatan</span> & <span class="text-secondary-400">Pariwisata</span> Terbaik
+                    Temukannnn <span class="text-secondary-400">Kesehatan</span> & <span class="text-secondary-400">Pariwisata</span> Terbaik
                 </h1>
                 <p class="mb-8 text-xl text-white/90 leading-relaxed">
                     Jelajahi layanan kesehatan terbaik dan destinasi wisata menarik di Yogyakarta dalam satu platform terpadu.
