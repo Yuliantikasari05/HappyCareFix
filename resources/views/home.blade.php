@@ -14,13 +14,13 @@
         <div class="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
             <div data-aos="fade-right">
                 <span class="inline-block px-4 py-2 mb-6 text-sm font-semibold rounded-full bg-white/20 backdrop-blur-sm">
-                    Platform Kesehatan & Pariwisata di Yogyakarta Istimewa
+                    Platform Kesehatan & Pariwisata di Yogyakarta
                 </span>
                 <h1 class="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">
                     Temukan <span class="text-secondary-400">Kesehatan</span> & <span class="text-secondary-400">Pariwisata</span> Terbaik
                 </h1>
                 <p class="mb-8 text-xl text-white/90 leading-relaxed">
-                    Jelajahi layanan kesehatan terbaik dan destinasi wisata menarik di Yogyakarta dalam satu platform terpadu.
+                    Jelajahi layanan kesehatan terbaik dan destinasi wisata menarik di Yogyakarta dalam satu platform terpadu ini.
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="{{ route('hospital.general') }}" class="px-6 py-3 font-semibold text-primary-700 transition-colors bg-white rounded-lg hover:bg-gray-100">
