@@ -14,7 +14,7 @@
         <div class="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
             <div data-aos="fade-right">
                 <span class="inline-block px-4 py-2 mb-6 text-sm font-semibold rounded-full bg-white/20 backdrop-blur-sm">
-                    Platform Kesehatan & Pariwisata di Yogyakarta
+                    Platform Kesehatan & Pariwisata di Yogyakartaaaaaaa
                 </span>
                 <h1 class="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">
                     Temukan <span class="text-secondary-400">Kesehatan</span> & <span class="text-secondary-400">Pariwisata</span> Terbaik
