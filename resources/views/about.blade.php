@@ -257,7 +257,7 @@
                     <div class="p-6 text-center">
                         <h3 class="mb-2 text-xl font-bold text-gray-900">{{ $member['name'] }}</h3>
                         <p class="mb-2 text-sm font-medium text-cyan-600">{{ $member['role'] }}</p>
-                        <p class="text-sm text-gray-500">NPM: {{ $member['npm'] }}</p>
+                        <p class="text-sm text-gray-500">NIM: {{ $member['npm'] }}</p>
                     </div>
                 </div>
             </div>
