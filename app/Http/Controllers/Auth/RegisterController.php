@@ -58,7 +58,7 @@ class RegisterController extends Controller
         Auth::login($user);
 
         // Kirim email verifikasi
-        $user->notify(new \App\Notifications\VerifikasiEmail());
+        $user->notify(new \app\Notifications\VerifikasiEmail());
 
         event(new Registered($user));
 
