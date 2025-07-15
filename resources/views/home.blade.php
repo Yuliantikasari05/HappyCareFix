@@ -20,7 +20,7 @@
                     Temukan <span class="text-secondary-400">Kesehatan</span> & <span class="text-secondary-400">Pariwisata</span> Terbaik
                 </h1>
                 <p class="mb-8 text-xl text-white/90 leading-relaxed">
-                    Jelajahi layanan kesehatan terbaik dan destinasi wisata menarik di Yogyakarta dalam satu platform terpadu ini.
+                    Jelajahi layanan kesehatan terbaik dan destinasi wisata menarik di Yogyakarta dalam satu platform terpadu.
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="{{ route('hospital.general') }}" class="px-6 py-3 font-semibold text-primary-700 transition-colors bg-white rounded-lg hover:bg-gray-100">
