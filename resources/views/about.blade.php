@@ -221,7 +221,7 @@
                 ['name' => 'Dentri Seviana', 'npm' => '2311501045', 'photo' => 'dentri.jpg', 'role' => 'System Analyst'],
                 ['name' => 'Hanna Usyaroh N', 'npm' => '2311501023', 'photo' => 'hanna.jpg', 'role' => 'System Analyst'],
                 ['name' => 'Arif Rahman', 'npm' => '2311501003', 'photo' => 'arif.jpg', 'role' => 'Programmer'],
-                ['name' => 'Sindi Setiawati', 'npm' => '2311501055', 'photo' => 'sindi.jpg', 'role' => 'Programmer'],
+                ['name' => 'Sindi Setiawati', 'npm' => '2311501055', 'photo' => 'sindi.jpg', 'role' => 'Programmer', 'github' => 'https://github.com/Sindi-aelo'],
                 ['name' => 'Dzunnuroit Bahrun', 'npm' => '2311501004', 'photo' => 'dzun.jpg', 'role' => 'Programmer & Testing'],
             ];
         @endphp
@@ -244,8 +244,9 @@
                             <a href="#" class="flex items-center justify-center w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors">
                                 <i data-lucide="linkedin" class="w-4 h-4 text-white"></i>
                             </a>
-                            <a href="#" class="flex items-center justify-center w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors">
-                                <i data-lucide="github" class="w-4 h-4 text-white"></i>
+                            <a href="{{ $member['github'] }}" target="_blank" rel="noopener"
+                                class="flex items-center justify-center w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors">
+                                    <i data-lucide="github" class="w-4 h-4 text-white"></i>
                             </a>
                             <a href="#" class="flex items-center justify-center w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors">
                                 <i data-lucide="mail" class="w-4 h-4 text-white"></i>
