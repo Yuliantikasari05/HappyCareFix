@@ -217,12 +217,12 @@
         
         @php
             $team = [
-                ['name' => 'Arif Rahman', 'npm' => '2311501003', 'photo' => 'arif.jpg', 'role' => 'Project Manager'],
-                ['name' => 'Dzunnuroit Bahrun', 'npm' => '2311501004', 'photo' => 'dzun.jpg', 'role' => 'Backend Developer'],
-                ['name' => 'Hanna Usyaroh N', 'npm' => '2311501023', 'photo' => 'hanna.jpg', 'role' => 'Frontend Developer'],
-                ['name' => 'Yuli Antika Sari', 'npm' => '2311501063', 'photo' => 'yuli.jpg', 'role' => 'UI/UX Designer'],
-                ['name' => 'Dentri Seviana', 'npm' => '2311501045', 'photo' => 'dentri.jpg', 'role' => 'Content Writer'],
-                ['name' => 'Sindi Setiawati', 'npm' => '2311501055', 'photo' => 'sindi.jpg', 'role' => 'Quality Assurance'],
+                ['name' => 'Yuli Antika Sari', 'npm' => '2311501063', 'photo' => 'yuli.jpg', 'role' => 'Project Manager'],
+                ['name' => 'Dentri Seviana', 'npm' => '2311501045', 'photo' => 'dentri.jpg', 'role' => 'System Analys'],
+                ['name' => 'Hanna Usyaroh N', 'npm' => '2311501023', 'photo' => 'hanna.jpg', 'role' => 'System Analys'],
+                ['name' => 'Arif Rahman', 'npm' => '2311501003', 'photo' => 'arif.jpg', 'role' => 'Programmer'],
+                ['name' => 'Sindi Setiawati', 'npm' => '2311501055', 'photo' => 'sindi.jpg', 'role' => 'Programmer'],
+                ['name' => 'Dzunnuroit Bahrun', 'npm' => '2311501004', 'photo' => 'dzun.jpg', 'role' => 'Programmer & Testing'],
             ];
         @endphp
         
