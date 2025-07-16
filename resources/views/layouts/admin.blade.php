@@ -7,162 +7,170 @@
     <title>@yield('title', 'HappyCare Admin')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --sidebar-width: 240px;
-            --header-height: 60px;
+            --header-height: 70px;
+            --primary: #1696b7; /* Biru sesuai gambar user */
+            --secondary: #fbbf24; /* Tailwind yellow-400 */
         }
-        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f8fa;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f8fa 60%, #e0e7ff 100%);
             margin: 0;
             padding: 0;
         }
-        
-        /* Sidebar */
         .sidebar {
             position: fixed;
             top: 0;
             left: 0;
             width: var(--sidebar-width);
             height: 100vh;
-            background-color: #1e2a38;
+            background: linear-gradient(135deg, var(--primary) 80%, #1e293b 100%);
             color: #fff;
             z-index: 1000;
             transition: all 0.3s;
+            border-top-right-radius: 18px;
+            border-bottom-right-radius: 18px;
+            box-shadow: 2px 0 12px rgba(30,42,56,0.08);
         }
-        
         .sidebar-header {
-            padding: 20px;
-            background-color: #172331;
+            padding: 24px 20px 16px 20px;
+            background: rgba(255,255,255,0.07);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        
+        .sidebar-header img {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            margin-bottom: 12px;
+        }
+        .sidebar-header h4 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0;
+            letter-spacing: 1px;
+        }
         .sidebar-menu {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-        
         .sidebar-menu li {
             margin-bottom: 5px;
         }
-        
         .sidebar-menu a {
             display: flex;
             align-items: center;
             padding: 12px 20px;
-            color: #a8b6c7;
+            color: #e0e7ff;
             text-decoration: none;
-            transition: all 0.3s;
+            border-radius: 8px 0 0 8px;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s, padding-left 0.2s;
         }
-        
         .sidebar-menu a:hover, .sidebar-menu a.active {
-            background-color: #2c3e50;
+            background: linear-gradient(90deg, var(--secondary) 10%, var(--primary) 90%);
             color: #fff;
+            padding-left: 28px;
         }
-        
         .sidebar-menu i {
-            margin-right: 10px;
-            width: 20px;
+            margin-right: 12px;
+            width: 22px;
             text-align: center;
+            font-size: 1.1rem;
         }
-        
-        /* Main Content */
         .main-content {
             margin-left: var(--sidebar-width);
-            padding: 20px;
+            padding: 28px 24px 24px 24px;
             min-height: calc(100vh - var(--header-height));
+            transition: margin-left 0.3s;
         }
-        
-        /* Header */
         .header {
             height: var(--header-height);
-            background-color: #1e2a38;
-            color: #fff;
+            background: linear-gradient(90deg, #fff 80%, var(--secondary) 100%);
+            color: #1e293b;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 0 28px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(30,42,56,0.07);
+            margin-bottom: 32px;
         }
-        
-        /* Dashboard Cards */
+        .header .admin-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 8px;
+            border: 2px solid var(--secondary);
+        }
         .dashboard-card {
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 22px 20px 18px 20px;
             color: #fff;
             position: relative;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        
         .dashboard-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.13);
         }
-        
         .dashboard-card .icon {
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 10px;
         }
-        
         .dashboard-card .title {
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
         }
-        
         .dashboard-card .value {
             font-size: 36px;
             font-weight: 700;
         }
-        
         .dashboard-card .details {
-            font-size: 12px;
+            font-size: 13px;
             margin-top: 10px;
         }
-        
-        .bg-blue { background: linear-gradient(135deg, #0d6efd, #0a58ca); }
-        .bg-cyan { background: linear-gradient(135deg, #0dcaf0, #0aa2c0); }
-        .bg-green { background: linear-gradient(135deg, #198754, #146c43); }
-        .bg-yellow { background: linear-gradient(135deg, #ffc107, #cc9a05); }
-        .bg-gray { background: linear-gradient(135deg, #6c757d, #565e64); }
-        
-        /* Tables */
+        .bg-blue { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+        .bg-cyan { background: linear-gradient(135deg, #38bdf8, #0ea5e9); }
+        .bg-green { background: linear-gradient(135deg, #22c55e, #16a34a); }
+        .bg-yellow { background: linear-gradient(135deg, #fbbf24, #f59e42); color: #1e293b; }
+        .bg-gray { background: linear-gradient(135deg, #64748b, #334155); }
         .data-table {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
         }
-        
         .data-table .table {
             margin-bottom: 0;
         }
-        
         .data-table-header {
-            padding: 15px 20px;
+            padding: 18px 24px 12px 24px;
             border-bottom: 1px solid #e9ecef;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
         .data-table-header h5 {
             margin: 0;
-            font-weight: 600;
+            font-weight: 700;
         }
-        
         .data-table-body {
             padding: 0;
         }
-        
         .data-table-footer {
-            padding: 15px 20px;
+            padding: 15px 24px;
             border-top: 1px solid #e9ecef;
             text-align: right;
         }
-        
-        /* Realtime indicator */
         .realtime-indicator {
             position: absolute;
             top: 10px;
@@ -173,36 +181,38 @@
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
-        
         @keyframes pulse {
             0% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
             70% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
             100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
-        
         .connection-status {
-            padding: 5px 10px;
+            padding: 5px 12px;
             border-radius: 4px;
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 600;
         }
-        
         .connected { background: #10b981; color: white; }
         .disconnected { background: #ef4444; color: white; }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .sidebar {
                 width: 0;
                 overflow: hidden;
             }
-            
             .main-content {
                 margin-left: 0;
+                padding: 16px 6px 16px 6px;
             }
-            
             .sidebar.active {
                 width: var(--sidebar-width);
+            }
+        }
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                height: auto;
+                padding: 12px 8px;
+                gap: 8px;
             }
         }
     </style>
@@ -211,6 +221,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
+            <img src="/images/logo.png" alt="Logo">
             <h4>HappyCare Admin</h4>
         </div>
         <ul class="sidebar-menu">
@@ -251,7 +262,6 @@
             </li>
         </ul>
     </div>
-
     <!-- Main Content -->
     <div class="main-content">
         <!-- Header -->
@@ -266,17 +276,18 @@
                     Disconnected
                 </span>
                 <div class="dropdown me-3">
-                    <button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown">
-                        <i class="fas fa-globe"></i> EN
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown">
+                        <span class="me-1">🇬🇧</span> EN
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">English</a></li>
-                        <li><a class="dropdown-item" href="#">Indonesia</a></li>
+                        <li><a class="dropdown-item" href="#"><span class="me-1">🇬🇧</span> English</a></li>
+                        <li><a class="dropdown-item" href="#"><span class="me-1">🇮🇩</span> Indonesia</a></li>
                     </ul>
                 </div>
                 <div class="dropdown">
-                    <button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
-                        <i class="fas fa-user"></i> Admin User
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=0d6efd&color=fff&rounded=true&size=36" class="admin-avatar" alt="Admin Avatar">
+                        <span class="ms-1">Admin User</span>
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -292,28 +303,24 @@
                         </li>
                     </ul>
                 </div>
-                <a href="{{ route('home') }}" class="btn btn-outline-light btn-sm ms-3">
+                <a href="{{ route('home') }}" class="btn btn-outline-primary btn-sm ms-3">
                     <i class="fas fa-external-link-alt"></i> View Site
                 </a>
             </div>
         </div>
-
         <!-- Content -->
         <div class="container-fluid px-0">
             @yield('content')
         </div>
     </div>
-
     <!-- Pusher JS -->
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script>
         // Sidebar toggle for mobile
         document.getElementById('sidebar-toggle').addEventListener('click', function() {
             document.querySelector('.sidebar').classList.toggle('active');
         });
-        
         // Setup Pusher
         const pusher = new Pusher('{{ env("PUSHER_APP_KEY") }}', {
             cluster: '{{ env("PUSHER_APP_CLUSTER") }}',
@@ -323,38 +330,31 @@
             forceTLS: false,
             enabledTransports: ['ws', 'wss'],
         });
-
         // Connection status
         const statusElement = document.getElementById('connection-status');
-        
         pusher.connection.bind('connected', function() {
             statusElement.textContent = 'Connected';
             statusElement.className = 'connection-status connected me-3';
             console.log('✅ WebSocket Connected');
         });
-
         pusher.connection.bind('disconnected', function() {
             statusElement.textContent = 'Disconnected';
             statusElement.className = 'connection-status disconnected me-3';
             console.log('❌ WebSocket Disconnected');
         });
-
         // Subscribe to admin dashboard channel
         const channel = pusher.subscribe('admin-dashboard');
-        
         // Listen for dashboard updates
         channel.bind('dashboard.updated', function(data) {
             console.log('📊 Dashboard data updated:', data);
             updateDashboardUI(data.data);
         });
-        
         // Function to update UI - will be overridden in specific pages
         function updateDashboardUI(data) {
             // Default implementation - will be overridden
             console.log('Dashboard data received:', data);
         }
     </script>
-    
     @stack('scripts')
 </body>
 </html>

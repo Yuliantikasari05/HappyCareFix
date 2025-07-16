@@ -3,129 +3,114 @@
 @section('title', $article->title . ' - HappyCare')
 
 @section('content')
-<div class="min-h-screen bg-gray-50">
+<div class="min-vh-100 bg-light">
     <!-- Article Header -->
-    <section class="relative py-16 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800">
-        <div class="absolute inset-0 bg-black opacity-10"></div>
-        <div class="relative container px-4 mx-auto">
-            <div class="max-w-4xl mx-auto">
-                <!-- Breadcrumb -->
-                <nav class="mb-6">
-                    <ol class="flex items-center space-x-2 text-primary-100">
-                        <li><a href="{{ route('home') }}" class="hover:text-white transition-colors">Home</a></li>
-                        <li><i data-lucide="chevron-right" class="w-4 h-4"></i></li>
-                        <li><a href="{{ route('articles.index') }}" class="hover:text-white transition-colors">Articles</a></li>
-                        <li><i data-lucide="chevron-right" class="w-4 h-4"></i></li>
-                        <li class="text-white">{{ Str::limit($article->title, 50) }}</li>
-                    </ol>
-                </nav>
+    <section class="bg-primary bg-gradient text-white py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Breadcrumb -->
+                    <nav aria-label="breadcrumb" class="mb-4">
+                        <ol class="breadcrumb breadcrumb-dark">
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('home') }}" class="text-white-50 text-decoration-none">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('articles.index') }}" class="text-white-50 text-decoration-none">Artikel</a>
+                            </li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">
+                                {{ Str::limit($article->title, 50) }}
+                            </li>
+                        </ol>
+                    </nav>
 
-                <!-- Article Meta -->
-                <div class="flex flex-wrap items-center gap-4 mb-6">
-                    @if($article->category)
-                        <span class="px-3 py-1 text-sm font-medium text-primary-700 bg-white rounded-full">
-                            {{ $article->category }}
-                        </span>
-                    @endif
-                    <div class="flex items-center text-primary-100">
-                        <i data-lucide="calendar" class="w-4 h-4 mr-2"></i>
-                        {{ $article->created_at->format('M d, Y') }}
+                    <!-- Article Meta -->
+                    <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                        @if($article->category)
+                            <span class="badge bg-white text-primary px-3 py-2 rounded-pill">
+                                <i class="fas fa-tag me-1"></i>{{ $article->category->name }}
+                            </span>
+                        @endif
+                        <div class="d-flex align-items-center text-white-50">
+                            <i class="fas fa-calendar me-2"></i>
+                            {{ $article->created_at->format('d M Y') }}
+                        </div>
+                        <div class="d-flex align-items-center text-white-50">
+                            <i class="fas fa-user me-2"></i>
+                            {{ $article->user->name ?? 'HappyCare Team' }}
+                        </div>
+                        <div class="d-flex align-items-center text-white-50">
+                            <i class="fas fa-eye me-2"></i>
+                            {{ $article->views_count ?? rand(100, 1000) }} views
+                        </div>
                     </div>
-                    <div class="flex items-center text-primary-100">
-                        <i data-lucide="user" class="w-4 h-4 mr-2"></i>
-                        HappyCare Team
-                    </div>
-                    <div class="flex items-center text-primary-100">
-                        <i data-lucide="eye" class="w-4 h-4 mr-2"></i>
-                        {{ rand(100, 1000) }} views
-                    </div>
+
+                    <!-- Article Title -->
+                    <h1 class="display-4 fw-bold text-white mb-0">
+                        {{ $article->title }}
+                    </h1>
                 </div>
-
-                <!-- Article Title -->
-                <h1 class="text-3xl md:text-5xl font-bold text-white leading-tight">
-                    {{ $article->title }}
-                </h1>
             </div>
         </div>
     </section>
 
     <!-- Article Content -->
-    <section class="py-16">
-        <div class="container px-4 mx-auto">
-            <div class="max-w-4xl mx-auto">
-                <!-- Featured Image -->
-                @if($article->image)
-                <div class="mb-8 overflow-hidden rounded-2xl">
-                    <img src="/placeholder.svg?height=400&width=800" alt="{{ $article->title }}" 
-                         class="w-full h-96 object-cover">
-                </div>
-                @endif
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Featured Image -->
+                    @if($article->image)
+                    <div class="mb-5">
+                        <img src="{{ Storage::url($article->image) }}" 
+                             alt="{{ $article->title }}" 
+                             class="img-fluid rounded-4 shadow-lg w-100"
+                             style="max-height: 500px; object-fit: cover;">
+                    </div>
+                    @endif
 
-                <!-- Article Body -->
-                <div class="prose prose-lg max-w-none">
-                    <div class="bg-white rounded-2xl shadow-lg p-8">
-                        <!-- Excerpt -->
-                        @if($article->excerpt)
-                        <div class="text-xl text-gray-600 font-medium mb-8 p-6 bg-primary-50 rounded-xl border-l-4 border-primary-500">
-                            {{ $article->excerpt }}
-                        </div>
-                        @endif
-
-                        <!-- Content -->
-                        <div class="text-gray-700 leading-relaxed space-y-6">
-                            <p>{{ $article->excerpt ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' }}</p>
-                            
-                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            
-                            <h3 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Poin Penting</h3>
-                            <ul class="space-y-2">
-                                <li class="flex items-start">
-                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                    <span>Menjaga pola makan yang sehat dan seimbang</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                    <span>Rutin berolahraga minimal 30 menit setiap hari</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                    <span>Istirahat yang cukup 7-8 jam per hari</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                    <span>Mengelola stress dengan baik</span>
-                                </li>
-                            </ul>
-                            
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-                            
-                            <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 my-8">
-                                <div class="flex items-start">
-                                    <i data-lucide="info" class="w-6 h-6 text-blue-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                    <div>
-                                        <h4 class="font-semibold text-blue-900 mb-2">Tips Tambahan</h4>
-                                        <p class="text-blue-800">Konsultasikan dengan dokter atau ahli kesehatan sebelum memulai program kesehatan baru, terutama jika Anda memiliki kondisi medis tertentu.</p>
+                    <!-- Article Body -->
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-body p-5">
+                            <!-- Excerpt -->
+                            @if($article->excerpt)
+                            <div class="alert alert-primary border-0 shadow-sm mb-5">
+                                <div class="d-flex align-items-start">
+                                    <i class="fas fa-quote-left text-primary me-3 mt-1"></i>
+                                    <div class="fs-5 fw-medium text-primary mb-0">
+                                        {{ $article->excerpt }}
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            @endif
 
-                        <!-- Share Buttons -->
-                        <div class="mt-12 pt-8 border-t border-gray-200">
-                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Bagikan Artikel</h4>
-                            <div class="flex space-x-4">
-                                <a href="#" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                    <i data-lucide="facebook" class="w-4 h-4 mr-2"></i>
-                                    Facebook
-                                </a>
-                                <a href="#" class="inline-flex items-center px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors">
-                                    <i data-lucide="twitter" class="w-4 h-4 mr-2"></i>
-                                    Twitter
-                                </a>
-                                <a href="#" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-                                    <i data-lucide="share-2" class="w-4 h-4 mr-2"></i>
-                                    WhatsApp
-                                </a>
+                            <!-- Content -->
+                            <div class="article-content fs-6 lh-lg text-dark">
+                                {!! nl2br(e($article->content)) !!}
+                            </div>
+
+                            <!-- Share Buttons -->
+                            <div class="border-top pt-4 mt-5">
+                                <h5 class="fw-bold mb-3">
+                                    <i class="fas fa-share-alt text-primary me-2"></i>Bagikan Artikel
+                                </h5>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" 
+                                       class="btn btn-primary" target="_blank">
+                                        <i class="fab fa-facebook-f me-2"></i>Facebook
+                                    </a>
+                                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}&text={{ urlencode($article->title) }}" 
+                                       class="btn btn-info" target="_blank">
+                                        <i class="fab fa-twitter me-2"></i>Twitter
+                                    </a>
+                                    <a href="https://wa.me/?text={{ urlencode($article->title . ' - ' . request()->fullUrl()) }}" 
+                                       class="btn btn-success" target="_blank">
+                                        <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                                    </a>
+                                    <button class="btn btn-outline-secondary" onclick="copyToClipboard()">
+                                        <i class="fas fa-copy me-2"></i>Copy Link
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -135,41 +120,52 @@
     </section>
 
     <!-- Related Articles -->
-    <section class="py-16 bg-white">
-        <div class="container px-4 mx-auto">
-            <div class="max-w-6xl mx-auto">
-                <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Artikel Terkait</h2>
-                
-                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    @for($i = 1; $i <= 3; $i++)
-                    <article class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                        <div class="relative overflow-hidden">
-                            <img src="/placeholder.svg?height=200&width=400" alt="Related Article {{ $i }}" 
-                                 class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                            <div class="absolute top-4 left-4">
-                                <span class="px-3 py-1 text-xs font-semibold text-white bg-primary-500 rounded-full">Kesehatan</span>
-                            </div>
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="text-center fw-bold mb-5">
+                        <i class="fas fa-newspaper text-primary me-2"></i>Artikel Terkait
+                    </h2>
+                    
+                    <div class="row g-4">
+                        @for($i = 1; $i <= 3; $i++)
+                        <div class="col-md-4">
+                            <article class="card border-0 shadow-sm h-100 hover-lift">
+                                <div class="position-relative overflow-hidden">
+                                    <img src="https://via.placeholder.com/400x200/007bff/ffffff?text=Article+{{ $i }}" 
+                                         alt="Related Article {{ $i }}" 
+                                         class="card-img-top" style="height: 200px; object-fit: cover;">
+                                    <div class="position-absolute top-0 start-0 m-3">
+                                        <span class="badge bg-primary px-3 py-2">Kesehatan</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-body d-flex flex-column">
+                                    <div class="d-flex align-items-center mb-3 text-muted small">
+                                        <i class="fas fa-calendar me-2"></i>
+                                        {{ now()->subDays($i)->format('d M Y') }}
+                                    </div>
+                                    
+                                    <h5 class="card-title fw-bold mb-3">
+                                        <a href="#" class="text-decoration-none text-dark stretched-link">
+                                            Tips Kesehatan Artikel {{ $i }}
+                                        </a>
+                                    </h5>
+                                    
+                                    <p class="card-text text-muted flex-grow-1">
+                                        Deskripsi singkat artikel kesehatan yang memberikan informasi bermanfaat untuk pembaca.
+                                    </p>
+                                    
+                                    <div class="d-flex align-items-center text-primary small fw-medium">
+                                        Baca Selengkapnya
+                                        <i class="fas fa-arrow-right ms-2"></i>
+                                    </div>
+                                </div>
+                            </article>
                         </div>
-                        
-                        <div class="p-6">
-                            <div class="flex items-center mb-3 text-sm text-gray-500">
-                                <i data-lucide="calendar" class="w-4 h-4 mr-2"></i>
-                                {{ now()->subDays($i)->format('M d, Y') }}
-                            </div>
-                            
-                            <h3 class="mb-3 text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors">
-                                <a href="#">Tips Kesehatan Artikel {{ $i }}</a>
-                            </h3>
-                            
-                            <p class="mb-4 text-gray-600 line-clamp-3">Deskripsi singkat artikel kesehatan yang memberikan informasi bermanfaat untuk pembaca.</p>
-                            
-                            <a href="#" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
-                                Baca Selengkapnya
-                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
-                            </a>
-                        </div>
-                    </article>
-                    @endfor
+                        @endfor
+                    </div>
                 </div>
             </div>
         </div>
@@ -177,8 +173,40 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        lucide.createIcons();
+function copyToClipboard() {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+        // Show success message
+        const btn = event.target.closest('button');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+        btn.classList.remove('btn-outline-secondary');
+        btn.classList.add('btn-success');
+        
+        setTimeout(function() {
+            btn.innerHTML = originalText;
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-outline-secondary');
+        }, 2000);
     });
+}
 </script>
+
+<style>
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.article-content {
+    line-height: 1.8;
+}
+.article-content p {
+    margin-bottom: 1.5rem;
+}
+.breadcrumb-dark .breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255, 255, 255, 0.5);
+}
+</style>
 @endsection

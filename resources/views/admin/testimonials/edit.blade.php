@@ -11,6 +11,29 @@
         </a>
     </div>
 
+    <!-- Notifikasi sukses/error -->
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i> {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times-circle me-2"></i> {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card shadow mb-4">
@@ -26,13 +49,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Nama</label>
-                                    <input type="text" class="form-control" id="name" value="{{ $testimonial->name }}" readonly>
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ $testimonial->name }}" readonly>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" value="{{ $testimonial->email }}" readonly>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ $testimonial->email }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -46,9 +69,9 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="content">Isi Testimoni</label>
-                            <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="5" required>{{ old('content', $testimonial->content) }}</textarea>
-                            @error('content')
+                            <label for="message">Isi Testimoni</label>
+                            <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" rows="5" required>{{ old('message', $testimonial->message) }}</textarea>
+                            @error('message')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -81,30 +104,32 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="photo">Foto</label>
-                            @if ($testimonial->photo)
+                            <label for="image">Foto</label>
+                            @if ($testimonial->image)
                                 <div class="mb-2">
-                                    <img src="{{ asset('storage/' . $testimonial->photo) }}" alt="{{ $testimonial->name }}" class="img-thumbnail" style="max-height: 150px;">
+                                    <img src="{{ asset('storage/' . $testimonial->image) }}" alt="{{ $testimonial->name }}" class="img-thumbnail" style="max-height: 150px;">
                                 </div>
                             @endif
-                            <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo" name="photo">
+                            <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
                             <small class="form-text text-muted">Biarkan kosong jika tidak ingin mengubah foto.</small>
-                            @error('photo')
+                            @error('image')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         
                         <div class="form-group">
+                            <input type="hidden" name="approved" value="0">
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="is_approved" name="is_approved" {{ old('is_approved', $testimonial->is_approved) ? 'checked' : '' }}>
-                                <label class="custom-control-label" for="is_approved">Disetujui</label>
+                                <input type="checkbox" class="custom-control-input" id="approved" name="approved" value="1" {{ old('approved', $testimonial->approved) ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="approved">Disetujui</label>
                             </div>
                         </div>
                         
                         <div class="form-group">
+                            <input type="hidden" name="featured" value="0">
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="is_featured" name="is_featured" {{ old('is_featured', $testimonial->is_featured) ? 'checked' : '' }}>
-                                <label class="custom-control-label" for="is_featured">Tampilkan sebagai Unggulan</label>
+                                <input type="checkbox" class="custom-control-input" id="featured" name="featured" value="1" {{ old('featured', $testimonial->featured) ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="featured">Tampilkan sebagai Unggulan</label>
                             </div>
                         </div>
                         

@@ -88,6 +88,7 @@
     <div class="absolute inset-0 opacity-5">
         <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25px 25px, #000 2px, transparent 0), radial-gradient(circle at 75px 75px, #000 2px, transparent 0); background-size: 100px 100px;"></div>
     </div>
+<<<<<<< HEAD
     
     <div class="container px-4 mx-auto relative z-10">
         <div class="grid grid-cols-2 gap-8 md:grid-cols-4" data-aos="fade-up" data-aos-duration="800">
@@ -95,6 +96,30 @@
             <div class="group text-center p-8 rounded-3xl bg-white/60 backdrop-blur-lg border border-white/20 shadow-xl hover:shadow-2xl hover:bg-white/80 transition-all duration-500 transform hover:-translate-y-2">
                 <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-primary-400 to-primary-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                     <i data-lucide="building-hospital" class="w-8 h-8 text-white"></i>
+=======
+
+    <div class="container px-4 py-24 mx-auto">
+        <div class="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
+            <div data-aos="fade-right">
+                <span class="inline-block px-4 py-2 mb-6 text-sm font-semibold rounded-full bg-white/20 backdrop-blur-sm">
+                    Platform Kesehatan & Pariwisata di Yogyakarta Istimewa
+                </span>
+                <h1 class="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">
+                    Temukan <span class="text-secondary-400">Kesehatan</span> & <span class="text-secondary-400">Pariwisata</span> Terbaik
+                </h1>
+                <p class="mb-8 text-xl text-white/90 leading-relaxed">
+                    Jelajahi layanan kesehatan terbaik dan destinasi wisata menarik di Yogyakarta dalam satu platform terpadu HappyCare.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="{{ route('hospital.general') }}" class="px-6 py-3 font-semibold text-primary-700 transition-colors bg-white rounded-lg hover:bg-gray-100">
+                        <i data-lucide="stethoscope" class="inline w-5 h-5 mr-2"></i>
+                        Layanan Kesehatan
+                    </a>
+                    <a href="{{ route('tour.nature') }}" class="px-6 py-3 font-semibold transition-colors border rounded-lg text-white/90 border-white/30 hover:bg-white/10">
+                        <i data-lucide="map" class="inline w-5 h-5 mr-2"></i>
+                        Destinasi Wisata
+                    </a>
+>>>>>>> 845f0578cc58d8cf3780eb09eb67934f6047b73e
                 </div>
                 <div class="text-5xl font-black text-primary-600 mb-2">48+</div>
                 <div class="text-gray-600 font-semibold">Health Facilities</div>
