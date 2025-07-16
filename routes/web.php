@@ -163,6 +163,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // Users Management
     Route::resource('users', UserController::class);
     Route::patch('/users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggle-status');
+    // Users Management
+    Route::resource('users', UserController::class);
+    Route::patch('/users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggle-status');
     
     // Articles Management
     Route::resource('articles', AdminArticleController::class);
@@ -176,9 +179,22 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     
     // Hospitals Management
     Route::resource('hospitals', HospitalController::class);
+    // Hospitals Management
+    Route::resource('hospitals', HospitalController::class);
+    Route::patch('/hospitals/{hospital}/toggle-featured', [HospitalController::class, 'toggleFeatured'])->name('hospitals.toggle-featured');
+    Route::patch('/hospitals/{hospital}/toggle-active', [HospitalController::class, 'toggleActive'])->name('hospitals.toggle-active');
     
     // Tours Management
     Route::resource('tours', TourController::class);
+    // Tours Management
+    Route::resource('tours', TourController::class);
+    Route::patch('/tours/{tour}/publish', [TourController::class, 'publish'])->name('tours.publish');
+    Route::patch('/tours/{tour}/unpublish', [TourController::class, 'unpublish'])->name('tours.unpublish');
+    Route::patch('/tours/{tour}/toggle-featured', [TourController::class, 'toggleFeatured'])->name('tours.toggle-featured');
+
+    Route::patch('/tours/{tour}/publish', [AdminTourController::class, 'publish'])->name('tours.publish');
+    Route::patch('/tours/{tour}/unpublish', [AdminTourController::class, 'unpublish'])->name('tours.unpublish');
+    Route::patch('/tours/{tour}/toggle-featured', [AdminTourController::class, 'toggleFeatured'])->name('tours.toggle-featured');
     
     // Content Management (jika masih digunakan)
     Route::resource('content', ContentController::class);
